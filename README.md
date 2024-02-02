@@ -23,3 +23,27 @@ Chess Telegram Bot is a simple Telegram bot that allows users to play chess and 
    ```bash
    git clone https://github.com/AFelipeTrujillo/chess-telegram-bot.git
    cd chess-telegram-bot
+
+2. Install the required Python packages:
+
+    ```bash
+    pip install -r requirements.txt
+
+3. Download and install Stockfish from Stockfish Website.
+
+4. Update the stockfish_path variable in the ChessGame class within the code to the path of your Stockfish executable.
+
+5. Run the bot:
+
+    ```bash
+    python main.py
+
+### Usage
+- Start a new game: /play
+- Make a move: /user_move <move_in_uci_format>
+- Get Bot move: /bot_move
+- View the current board state: /board_state
+
+### Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
