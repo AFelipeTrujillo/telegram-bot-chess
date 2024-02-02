@@ -1,7 +1,7 @@
 import telebot
 
 from libs.chess import Game
-from libs.commands import GreetCommand, PlayCommand
+from libs.commands import GreetCommand, PlayCommand, UserMoveCommand, BotMoveCommand
 
 class ChessBot:
 
@@ -9,7 +9,9 @@ class ChessBot:
         self.bot = telebot.TeleBot(token, parse_mode='HTML')
         self.commands = {
             '/greeting': GreetCommand(),
-            '/play' : PlayCommand(chess_game)
+            '/play' : PlayCommand(chess_game),
+            '/user_move': UserMoveCommand(chess_game, None),  # Placeholder for user move
+            '/bot_move': BotMoveCommand(chess_game),
         }
         self.register_handlers()
     
@@ -23,12 +25,15 @@ class ChessBot:
 
             if command:
                 if len(command_parts) > 1:
-                    response = command.execute(command_parts[1])
+                    if isinstance(command, UserMoveCommand):
+                        command.move = command_parts[1]
+                    response = command.execute()
                 else:
                     response = command.execute()
-                self.bot.send_message(message.chat.id, response)
+                self.bot.send_message(message.chat.id, response, parse_mode='HTML')
             else:
                 self.bot.send_message(message.chat.id, "Unknown command")
+
     
     def run(self):
         self.bot.polling()

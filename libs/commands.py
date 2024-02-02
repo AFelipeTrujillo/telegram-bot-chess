@@ -20,3 +20,18 @@ class PlayCommand(Command):
             return self.chess_game.make_move(move)
         else:
             return self.chess_game.start_new_game()
+
+class UserMoveCommand(Command):
+    def __init__(self, chess_game : Game, move):
+        self.chess_game = chess_game
+        self.move = move
+
+    def execute(self):
+        return self.chess_game.make_move(self.move)
+
+class BotMoveCommand(Command):
+    def __init__(self, chess_game : Game):
+        self.chess_game = chess_game
+
+    def execute(self):
+        return self.chess_game.get_best_move()
