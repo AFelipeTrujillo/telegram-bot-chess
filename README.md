@@ -1,12 +1,12 @@
-# Chess Telegram Bot
+# Telegram Chess Bot
 
-Chess Telegram Bot is a simple Telegram bot that allows users to play chess and get game analysis using the Stockfish chess engine.
+This is a simple Telegram bot for playing chess. The bot allows users to start new games, make moves, and receive responses from the bot. It uses the **python-chess** library for chess-related functionalities.
 
 ## Features
 
 - Start a new chess game.
 - Make moves during the game.
-- Get suggestions for the best move using Stockfish.
+- Get bot move using **Stockfish**.
 - View the current state of the chess board.
 
 ## Getting Started
@@ -38,12 +38,24 @@ Chess Telegram Bot is a simple Telegram bot that allows users to play chess and 
     ```bash
     python main.py
 
-### Usage
+## Project Structure
+
+- **libs**: Contains modules for the chess bot functionality.
+  - `bot.py`: Defines the ChessBot class.
+  - `chess.py`: Contains the Game class and related chess functionalities.
+  - `commands.py`: Defines various command classes for the bot.
+
+- **tests**: Contains unit tests for the bot functionalities.
+
+- **.env**: File for storing environment variables, including the Telegram API token.
+
+- **main.py**: Entry point for running the bot.
+
+## Usage
 - Start a new game: /play
 - Make a move: /user_move <move_in_uci_format>
-- Get Bot move: /bot_move
 - View the current board state: /board_state
 
-### Contributing
+## Contributing
 
 Contributions are welcome! Feel free to open issues or submit pull requests.
