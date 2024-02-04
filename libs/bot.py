@@ -1,7 +1,7 @@
 import telebot
 
 from libs.chess import Game
-from libs.commands import GreetCommand, PlayCommand, UserMoveCommand, BotMoveCommand
+from libs.commands import GreetCommand, PlayCommand, UserMoveCommand
 
 class ChessBot:
 
@@ -10,8 +10,7 @@ class ChessBot:
         self.commands = {
             '/greeting': GreetCommand(),
             '/play' : PlayCommand(chess_game),
-            '/user_move': UserMoveCommand(chess_game, None),  # Placeholder for user move
-            '/bot_move': BotMoveCommand(chess_game),
+            '/user_move': UserMoveCommand(chess_game),
         }
         self.register_handlers()
     

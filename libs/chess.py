@@ -18,7 +18,7 @@ class Game:
         try:
             self.board.push(chess.Move.from_uci(move))
             self.current_player = not self.current_player
-            return "Move successful! Updated board state:\n" + self._format_board_state()
+            return f"Move successful! Updated board state: <b>{move}</b>\n{self._format_board_state()}"
         except ValueError:
             return "Invalid move. Please provide a valid UCI format move."
  
