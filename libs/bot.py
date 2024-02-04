@@ -2,6 +2,7 @@ import telebot
 
 from libs.chess import Game
 from libs.commands import GreetCommand, PlayCommand, UserMoveCommand, BotMoveCommand
+from libs.commands import PositionImageCommand
 
 class ChessBot:
 
@@ -12,6 +13,7 @@ class ChessBot:
             '/play' : PlayCommand(chess_game),
             '/user_move': UserMoveCommand(chess_game, None),  # Placeholder for user move
             '/bot_move': BotMoveCommand(chess_game),
+            '/position_image': PositionImageCommand(chess_game, self.bot),
         }
         self.register_handlers()
     
@@ -30,7 +32,11 @@ class ChessBot:
                     response = command.execute()
                 else:
                     response = command.execute()
-                self.bot.send_message(message.chat.id, response, parse_mode='HTML')
+                
+                if isinstance(command, PositionImageCommand):
+                    self.bot.send_photo(message.chat.id, response)
+                else:
+                    self.bot.send_message(message.chat.id, response, parse_mode='HTML')
             else:
                 self.bot.send_message(message.chat.id, "Unknown command")
 

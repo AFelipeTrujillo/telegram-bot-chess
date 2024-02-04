@@ -1,7 +1,7 @@
-import chess
 import chess.engine
 
 from chess.engine import SimpleEngine
+from chess.svg import board
 
 class Game:
 
